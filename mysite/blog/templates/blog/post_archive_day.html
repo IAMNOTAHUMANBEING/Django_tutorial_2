@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}post_archive_day.html{% endblock %}
+
+{% block content %}
+
+<h1>Post Archive for {{ day|date:"N d, Y" }}</h1><!-- month 해당 연월일을 담은 컨텍스트 변수 -->
+
+<br><br>
+
+<div>
+    <ul>
+        {% for post in object_list %}
+        <li>{{ post.modify_dt|date:"Y-m-d" }}&emsp;
+            <a href="{{ url 'post.get_absolute_url' }}"><strong>{{ post.title }}</strong></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}post_archive.html{% endblock %}
+
+{% block content %}
+
+<h1>Post Archives until {% now "N d, Y" %}</h1><!-- 현재 날짜와 시간을 원하는 포맷으로 출력 -->
+
+{% for date in date_list %} <!-- DateQuerySet 객체리스트를 담고 있음, 날짜 정보만 추출해서 담고 있음 -->
+<a href="{% url 'blog:post_year_archive' date|date:'Y' %}"
+   class="btn btn-outline-primary btn-sm mx-1">Year {{ date|date:"Y" }}</a>
+{% endfor %}
+
+<br><br>
+
+<div>
+    <ul>
+        {% for post in object_list %}
+        <li class="h5">
+            {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+            <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
