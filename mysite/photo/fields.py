@@ -4,9 +4,9 @@ from PIL import Image   # 파이썬 이미지 처리 라이브러리
 from django.db.models.fields.files import ImageField, ImageFieldFile
 
 class ThumbnailImageFieldFile(ImageFieldFile):  # 파일 시스템에 직접 파일을 쓰고 지우는 작업을 함
-    def _add_thumb(s):  # 기존 이미지 파일명을 썸네일 이미지 파일명으로 만들어줌
+    def _add_thumb(self, s):  # 기존 이미지 파일명을 썸네일 이미지 파일명으로 만들어줌
         parts = s.split(".")
-        parts.insert(-2, "thumb")
+        parts.insert(-1, "thumb")
         if parts[-1].lower() not in ['jpeg', 'jpg']:
             parts[-1] = 'jpg'
         return ".".join(parts)

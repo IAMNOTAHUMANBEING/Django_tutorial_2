@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}login.html{% endblock %}
+
+{% block content %}
+
+<h1>Please Login</h1>
+<p class="font-italic">Please enter your id and password.</p>
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <div class="font-weight-bold">Wrong! Please correct the error(s) below.</div>
+    {{ form.errors }}
+</div>
+{% endif %}
+
+<form action="." method="post" class="card pt-3">{% csrf_token %}
+
+<div class="form-group row mt-5">
+    {{ form.username|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+    <!-- form변수는 LoginView에서 넘겨주는 로그인용 기본 폼으로 form.username은 form의 username필드를 의미하고 각 필드는 label과 input 태그를 포함함.
+         부트스트랩에서 form-group의 label과 input을 지정해주는 기능을 이용해서 각각 설정을 함 -->
+    <div class="col-sm-5">
+        {{ form.username|add_class:"form-control"|attr:"autofocus" }}
+        <!-- attr은 html single attribute 값을 추가함 -->
+    </div>
+</div>
+<div class="form-group row">
+    {{ form.password|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">
+        {{ form.password|add_class:"form-control" }}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="offset-sm-2 col-sm-5">
+        <input type="submit" value="Log in" class="btn btn-info"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <!-- 폼 제출 시 폼의 next 값에 LoginView에서 넘어온 {{ next }} 할당, 뷰에서 POST 요청 처리 후(즉 로그인 성공) {{ next }}변수로 지정된 URL로 이동시킴 -->
+    </div>
+</div>
+
+</form>
+
+{% endblock %}

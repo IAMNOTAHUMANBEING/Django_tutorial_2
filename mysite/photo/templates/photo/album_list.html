@@ -4,7 +4,7 @@
 
 {% block extra-style %}
 <style>
-    thumbnail {
+    .thumbnail {
         border: 3px solid #ccc;
     }
 </style>
@@ -21,19 +21,21 @@
     <span class="font-italic h5">{{ item.description }}</span>
 </div>
 
-<hr style="margin: 0 0 20px 0;">
+<hr style="margin: 0 0 10px 0;">
 
 <div class="row">
     {% for photo in item.photo_set.all|slice:":5" %} <!-- slice 템플릿 필터는 파이썬 리스트의 슬라이싱과 유사-->
-    <div class="ml-5">
+    <div class="col-3 ml-5">
         <div class="thumbnail">
             <a href="{{ photo.get_absolute_url }}">
-                <img src="{{ photo.image.thumb_url }}" style="width: 100%;">
+                <img src="  {{ photo.image.thumb_url }}" style="width: 100%;">
                 <!-- photo의 image 컬럼은 ThumbnailimageField 필드로서 사진 원본 및 썸네일 정보 저장 -->
             </a>
         </div>
     </div>
+    {% endfor %}
 </div>
+
 {% endfor %}
 
 {% endblock %}

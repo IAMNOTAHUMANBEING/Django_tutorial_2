@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
     'photo.apps.PhotoConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 TAGGIT_CASE_INSENTIVE = True    # 태그 대소문자 구분 X
 TAGGIT_LIMIT = 50   # 태그 클라우드에 나타나는 최대 개수
