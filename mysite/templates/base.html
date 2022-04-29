@@ -14,6 +14,7 @@
 
 <body style="padding-top:80px;">
 
+<!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <span class="navbar-brand font-weight-bold font-italic">Django Web Programming</span>
@@ -32,6 +33,7 @@
                 <li class="nav-item mx-1 btn">
                     <a class="nav-link " href="{% url 'photo:index' %}">Photo</a>
                 </li>
+                <!-- dropdown -->
                 <li class="nav-item dropdown mx-1 btn">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Util</a>
@@ -44,11 +46,33 @@
                         <li><a class="dropdown-item" href="{% url 'blog:search' %}">Search</a></li>
                     </ul>
                 </li>
+                 <li class="nav-item dropdown mx-1 btn">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Add</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'bookmark:add' %}">Bookmark</a>
+                        <a class="dropdown-item" href="{% url 'blog:add' %}">Blog</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="">Album</a>
+                        <a class="dropdown-item" href="">Photo</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown mx-1 btn">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Add</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'bookmark:add' %}">Bookmark</a>
+                        <a class="dropdown-item" href="{% url 'blog:add' %}">Blog</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="">Album</a>
+                        <a class="dropdown-item" href="">Photo</a>
+                    </div>
+                </li>
             </ul>
+            <!-- search -->
             <form class="form-inline my-2" action="" method="post">
                 {% csrf_token %}
                 <input class="form-control mr-10" type="search" placeholder="global search" name="search_word">
             </form>
+            <!-- userinfo -->
             <ul class="navbar-nav ml-5 mr-5">
                 <li class="nav-item dropdown mx-1 btn">
                     {% if user.is_active %}
