@@ -23,7 +23,7 @@ class BookmarkChangeLV(LoginRequiredMixin, ListView):
     template_name = 'bookmark/bookmark_change_list.html'
 
     def get_queryset(self):
-        return Bookmark.objects.filter(owner=self.request.user)
+        return Bookmark.objects.filter(owner=self.request.user) # 사용자가 작성한 북마크만 가져오기
 
 class BookmarkUpdateView(OwnerOnlyMixin, UpdateView):
     model = Bookmark

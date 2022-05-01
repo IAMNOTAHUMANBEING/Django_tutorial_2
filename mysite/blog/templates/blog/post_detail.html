@@ -41,7 +41,7 @@
 
     <br>
     <div>
-        <b>TAGS</b> <i class="fas- fa-tag"></i>
+        <b>TAGS</b> <i class="fas fa-tag"></i>
         {% load taggit_templatetags2_tags %} <!-- 패키지에 정의된 커스텀 태그 사용을 위해 모듈 로딩 -->
         {% get_tags_for_object object as "tags" %} <!-- 커스텀 태그를 이용해 객체에 달린 태그 리스트를 추출해 tags 변수에 할당-->
         {% for tag in tags %}
