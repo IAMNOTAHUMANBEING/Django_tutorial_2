@@ -90,9 +90,9 @@ class AlbumPhotoCV(LoginRequiredMixin, CreateView):
             return self.render_to_response(self.get_context_data(form=form))
 
 class AlbumPhotoUV(OwnerOnlyMixin, UpdateView):
-    modle = Album
+    model = Album
     template_name = "photo/album_form.html"
-    fileds = ('name', 'description')
+    fields = ('name', 'description')
     success_url = reverse_lazy('photo:index')
 
     def get_context_data(self, **kwargs):
