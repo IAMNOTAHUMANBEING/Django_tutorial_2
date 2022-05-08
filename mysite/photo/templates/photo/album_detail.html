@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load sorl_thumbnail %}
+
 
 {% block title %}album_detail.html{% endblock %}
 
@@ -24,7 +26,9 @@
         <div class="col-md-3 mb-5">
             <div class="thumbnail">
                 <a href="{{ photo.get_absolute_url }}">
-                    <img src="{{ photo.image.thumb_url }}" style="width: 100%;">
+                    {% thumbnail photo.image "256x256" crop="center" as im %}
+                    <img src="{{ im.url }}" style="width: 100%;">
+                    {% endthumbnail %}
                 </a>
             </div>
             <ul>

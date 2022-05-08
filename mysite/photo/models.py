@@ -1,12 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
-from photo.fields import ThumbnailImageField
-
 class Album(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField('One Line Description', max_length=100, blank=True)
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='OWNER', blank=True, null=True)
+    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='OWNER', blank=True, null=True)   # 모델을 import 해도 되고, "앱명.테이블명"도 가능
 
     class Meta:
         ordering = ('name',)
@@ -21,7 +19,7 @@ class Photo(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     title = models.CharField('TITLE', max_length=30)
     description = models.TextField('Photo Description', blank=True)
-    image = ThumbnailImageField(upload_to='photo/%Y/%m')
+    image = models.ImageField('IMAGE', upload_to='SorlPhoto/%Y')
     upload_dt = models.DateTimeField('Upload Date', auto_now_add=True)
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='OWNER', blank=True, null=True)
 
@@ -33,3 +31,11 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         return reverse('photo:photo_detail', args=(self.id,))
+
+
+class Publication(models.Model):
+    title = models.CharField(max_length=30)
+    albums = models.ManyToManyField(Album)
+
+    def __str__(self):
+        return self.title
