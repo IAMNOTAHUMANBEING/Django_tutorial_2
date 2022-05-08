@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Secret Key
+mysite/mysite/secret_key.txt
