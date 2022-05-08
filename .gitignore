@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Secret Key
-mysite/mysite/secret_key.txt
+secret_key.txt
